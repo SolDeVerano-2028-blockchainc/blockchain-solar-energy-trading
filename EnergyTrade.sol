@@ -9,7 +9,7 @@ contract EnergyTrade {
   bool public confirmed;
   address public meter;
   uint public deliveredKWh;
-
+  bool public settled;
 
   constructor(uint _kWh, uint _price, address _meter) {
 seller = msg.sender;
@@ -35,7 +35,25 @@ require(confirmed == false, "Already confirmed");
 
 deliveredKWh = _deliveredKWh;
 confirmed = true;
+}
+function settle() public {
+  require(msg.sender == seller  || msg.sender == buyer, "Not allowed");
+  require(confirmed == true, "Delivery not confirmed");
+  require(settled == false,"Already settled"); 
+
+  settled = true;
+
+  address receiver;
+  if (deliveredKWh >= kWh) {
+    receiver = seller;
+    } else { 
+
+  receiver = buyer;
+
  }
 
+ (bool ok, ) = payable(receiver).call{value: price}("");
+ require(ok,"Payment failed");
+
   }
-    
+  }
