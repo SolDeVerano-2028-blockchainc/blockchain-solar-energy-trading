@@ -1,6 +1,7 @@
 # Blockchain Solar Energy Trading
 
 **Student**: Marcela Carcamo L00205231
+
 **Module**: TECHIT904 Blockchain Technology - ATU Donegal
 
 ## What the app does
