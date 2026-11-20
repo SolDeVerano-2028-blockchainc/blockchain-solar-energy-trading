@@ -50,8 +50,7 @@ I carried out manual tests A-K using Remix VM to check that the different functi
 |H | The seller receives the payment after full delivery. | Successful: Seller received 0.0004 ETH  |
 |I | The same trade cannot be settled twice. | Rejected as expected: "Already settled"  |
 |J | The buyer gets a refund if only 1 kWh is delivered instead of 2 kWh. | Successful: money returned to buyer  |
-|K | The seller cannot buy their own trade. | Rejected as expected: "Seller cannot buy "  |
-|L | The buyer cannot accept the same trade again. | Rejected as expected: "Already accepted"  |
+|K | The buyer cannot accept the same trade again. | Rejected as expected: "Already accepted"  |
 
 ## Security
 
