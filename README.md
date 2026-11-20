@@ -25,4 +25,11 @@ The buyer sends the payment to the smart contract. The money stays there until t
 - **confirmDelivery(uint)** - The meter confirms how many kWh wre delivered.
 - **settle()** - Sends the money to the seller if delivery is correct, or returns it to buyer if lees enernergy was delivered. This function can only be used once.
 
-- 
+## How to run it (Remix)
+
+1. Open **EnergyTrade.sol** in Remix (https://remix.ethereum.org) and compile the contract using Solidity 0.8.x.
+2. Deploy the contract using Account 1. Enter _kWh = 2, _price = **400000000000000** and the address of Account 3 as _meter.
+3. Select Account 2, enter the payment amount **400000000000000** wei in Value (Low level interaction) and call **acceptTrade**.
+4. Change Value back to 0.
+5. Select Account 3 and call **confirmDelivery(2)**.
+6. Finally, Account 1 or Account 2 can call **settle**.
