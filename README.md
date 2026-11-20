@@ -33,3 +33,35 @@ The buyer sends the payment to the smart contract. The money stays there until t
 4. Change Value back to 0.
 5. Select Account 3 and call **confirmDelivery(2)**.
 6. Finally, Account 1 or Account 2 can call **settle**.
+
+## Test
+
+I carried out manual A-K using Remix VM to check that the different function worked correctly and that the contract rejected actions that were not allowed. I also took screenshots of the test and saved them in the **evidebce folder.
+
+| **Test** | **What I tested** | **Result** |
+|---|---|---|
+|A | The meter cannot confirm before the buyer pays. | Reject as expected: "Trade not accepted"  |
+|B | The buyer sends the correct payment. | Reject as expected: "Successful"  |
+|C | Only the meter can confirm the delivey. | Reject as expected: "Only meter can confirm"  |
+|D/E | The delivery can not be confirm twice. | First Successful, second rejected: Already confirmed  |
+|F | The buyer can not before delivey confirmed. | Reject as expected: "Delivery not confirmed"  |
+|G | The meter cannot cal settle. | Reject as expected: "Not Allowed"  |
+|H | The seller receives the payment after full delivy. | Successful: seller received 0.0004 ETH  |
+|I | The same trade can not be settled twice. | Reject as expected: "Already settled"  |
+|J | The buyer gets a refund if only 1 kWh is delivered instead of 2 kWh.. | Successful: money returned to buyer  |
+|K | The seller cannot buy their own trade. | Reject as expected: "Seller cannot buy "  |
+|L | The buyer cannot accept the same trade again. | Reject as expected: "Already accepted"  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
