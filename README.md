@@ -1,15 +1,15 @@
-# Blockchain Solar Energy TRading
+# Blockchain Solar Energy Trading
 
-**Sudent**: Marcela Carcamo L00205231
-**Module**: TECHIT904 Block Chain - ATU Donegal
+**Student**: Marcela Carcamo L00205231
+**Module**: TECHIT904 Blockchain Technology - ATU Donegal
 
 ## What the app does
 
-My project is a small decentralised application for trading solar energy between two people. For example, a household with solar panels sell 2 kWh of extra energy to a neighbour.
+My project is a small decentralised application for trading solar energy between two people. For example, a household with solar panels can sell 2 kWh of extra energy to a neighbour.
 The buyer sends the payment to the smart contract. The money stays there until the meter confirms how much energy was delivered.
 
 ## After that:
-- If the full amount of energy delovered, the seller receives the payment.
+- If the full amount of energy delivered, the seller receives the payment.
 - If less energy is delivered, the money is returned to the buyer.
 
 ## Roles
@@ -17,13 +17,13 @@ The buyer sends the payment to the smart contract. The money stays there until t
 |---|---|---|
 | Seller | Account 1 | Creates the contract and can call settle. |
 | Buyer | Account 2 |Accepts the trade, makes the payment and can call settle.|
-| Meter (oracle) |Account 3 |Confirms the amounts pf energy delivered using confimDelivery. |
+| Meter (oracle) |Account 3 |Confirms the amounts of energy delivered using confirmDelivery. |
 
 
-## Fuctions 
-- **acceptTrade()** - The buyer the trade and sends the correct payment.
-- **confirmDelivery(uint)** - The meter confirms how many kWh wre delivered.
-- **settle()** - Sends the money to the seller if delivery is correct, or returns it to buyer if lees enernergy was delivered. This function can only be used once.
+## Functions 
+- **acceptTrade()** - The buyer accepts the trade and sends the correct payment.
+- **confirmDelivery(uint)** - The meter confirms how many kWh were delivered.
+- **settle()** - Sends the money to the seller if delivery is correct, or returns it to the buyer if less energy was delivered. This function can only be used once.
 
 ## How to run it (Remix)
 
@@ -34,23 +34,23 @@ The buyer sends the payment to the smart contract. The money stays there until t
 5. Select Account 3 and call **confirmDelivery(2)**.
 6. Finally, Account 1 or Account 2 can call **settle**.
 
-## Test
+## Tests
 
-I carried out manual A-K using Remix VM to check that the different function worked correctly and that the contract rejected actions that were not allowed. I also took screenshots of the test and saved them in the **evidebce folder.
+I carried out manual tests A-K using Remix VM to check that the different functions worked correctly and that the contract rejected actions that were not allowed. I also took screenshots of the tests and saved them in the **evidebce folder**.
 
 | **Test** | **What I tested** | **Result** |
 |---|---|---|
-|A | The meter cannot confirm before the buyer pays. | Reject as expected: "Trade not accepted"  |
-|B | The buyer sends the correct payment. | Reject as expected: "Successful"  |
-|C | Only the meter can confirm the delivey. | Reject as expected: "Only meter can confirm"  |
-|D/E | The delivery can not be confirm twice. | First Successful, second rejected: Already confirmed  |
-|F | The buyer can not before delivey confirmed. | Reject as expected: "Delivery not confirmed"  |
-|G | The meter cannot cal settle. | Reject as expected: "Not Allowed"  |
-|H | The seller receives the payment after full delivy. | Successful: seller received 0.0004 ETH  |
-|I | The same trade can not be settled twice. | Reject as expected: "Already settled"  |
-|J | The buyer gets a refund if only 1 kWh is delivered instead of 2 kWh.. | Successful: money returned to buyer  |
-|K | The seller cannot buy their own trade. | Reject as expected: "Seller cannot buy "  |
-|L | The buyer cannot accept the same trade again. | Reject as expected: "Already accepted"  |
+|A | The meter cannot confirm before the buyer pays. | Rejected as expected: "Trade not accepted"  |
+|B | The buyer sends the correct payment. | Rejected as expected: "Successful"  |
+|C | Only the meter can confirm the delivery. | Rejected as expected: "Only meter can confirm"  |
+|D/E | The delivery cannot be confirmed twice. | First Successful, second rejected: Already confirmed  |
+|F | The buyer cannot settle before the delivey is confirmed. | Rejected as expected: "Delivery not confirmed"  |
+|G | The meter cannot call settle. | Rejected as expected: "Not allowed"  |
+|H | The seller receives the payment after full delivery. | Successful: Seller received 0.0004 ETH  |
+|I | The same trade cannot be settled twice. | Rejected as expected: "Already settled"  |
+|J | The buyer gets a refund if only 1 kWh is delivered instead of 2 kWh. | Successful: money returned to buyer  |
+|K | The seller cannot buy their own trade. | Rejected as expected: "Seller cannot buy "  |
+|L | The buyer cannot accept the same trade again. | Rejected as expected: "Already accepted"  |
 
 ## Security
 
