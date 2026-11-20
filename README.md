@@ -52,7 +52,15 @@ I carried out manual A-K using Remix VM to check that the different function wor
 |K | The seller cannot buy their own trade. | Reject as expected: "Seller cannot buy "  |
 |L | The buyer cannot accept the same trade again. | Reject as expected: "Already accepted"  |
 
+## Security
 
+I added some checks using require to make sure that only the correct accounts can use each function.
+
+- Only the buyer can accept the trade and make the payment.
+- Only the meter can confirm the energy delivery.
+- Only the seller or buyer can call settle.
+- The contract checks that the payment is exactly the agreed price.
+- The settled variable is changed to true before sending the money, to prevent the same payment from happening twice.
 
 
 
