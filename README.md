@@ -9,15 +9,15 @@
 My project is a small decentralised application for trading solar energy between two people. For example, a household with solar panels can sell 2 kWh of extra energy to a neighbour.
 The buyer sends the payment to the smart contract. The money stays there until the meter confirms how much energy was delivered.
 
-## After that:
-- If the full amount of energy delivered, the seller receives the payment.
+After that:
+- If the full amount of energy is delivered, the seller receives the payment.
 - If less energy is delivered, the money is returned to the buyer.
 
 ## Roles
 | **Role** | **Account in Remix VM** | **What they can do** |
 |---|---|---|
 | Seller | Account 1 | Creates the contract and can call settle. |
-| Buyer | Account 2 |Accepts the trade, makes the payment and can call settle.|
+| Buyer | Account 2 | Any account except the seller. Accepts the trade, makes the payment and can call settle. |
 | Meter (oracle) |Account 3 |Confirms the amounts of energy delivered using confirmDelivery. |
 
 
@@ -37,15 +37,15 @@ The buyer sends the payment to the smart contract. The money stays there until t
 
 ## Tests
 
-I carried out manual tests A-K using Remix VM to check that the different functions worked correctly and that the contract rejected actions that were not allowed. I also took screenshots of the tests and saved them in the **evidebce folder**.
+I carried out manual tests A-K using Remix VM to check that the different functions worked correctly and that the contract rejected actions that were not allowed. I also took screenshots of the tests and saved them in the **evidence** folder.
 
 | **Test** | **What I tested** | **Result** |
 |---|---|---|
 |A | The meter cannot confirm before the buyer pays. | Rejected as expected: "Trade not accepted"  |
-|B | The buyer sends the correct payment. | "Successful"  |
+|B | The buyer sends the correct payment. | Successful  |
 |C | Only the meter can confirm the delivery. | Rejected as expected: "Only meter can confirm"  |
 |D/E | The delivery cannot be confirmed twice. | First Successful, second rejected: Already confirmed  |
-|F | The buyer cannot settle before the delivey is confirmed. | Rejected as expected: "Delivery not confirmed"  |
+|F | The buyer cannot settle before the delivery is confirmed. | Rejected as expected: "Delivery not confirmed"  |
 |G | The meter cannot call settle. | Rejected as expected: "Not allowed"  |
 |H | The seller receives the payment after full delivery. | Successful: Seller received 0.0004 ETH  |
 |I | The same trade cannot be settled twice. | Rejected as expected: "Already settled"  |
@@ -56,11 +56,16 @@ I carried out manual tests A-K using Remix VM to check that the different functi
 
 I added some checks using require to make sure that only the correct accounts can use each function.
 
-- Only the buyer can accept the trade and make the payment.
+- The seller cannot buy their own trade. The first account that pays becomes the buyer.
 - Only the meter can confirm the energy delivery.
 - Only the seller or buyer can call settle.
 - The contract checks that the payment is exactly the agreed price.
-- The settled variable is changed to true before sending the money, to prevent the same payment from happening twice.
+## Deployment on Sepolia
+The contract was deployed on the Sepolia test network using MetaMask and Alchemy (BaaS).
+
+Contract address: 0x79287f5e8de0328B1278ff01E5a212dbeCbbF66a
+
+Etherscan: https://sepolia.etherscan.io/address/0x79287f5e8de0328B1278ff01E5a212dbeCbbF66a
 
 
 
