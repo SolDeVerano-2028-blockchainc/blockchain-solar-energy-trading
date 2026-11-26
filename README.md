@@ -42,7 +42,7 @@ I carried out manual tests A-K using Remix VM to check that the different functi
 | **Test** | **What I tested** | **Result** |
 |---|---|---|
 |A | The meter cannot confirm before the buyer pays. | Rejected as expected: "Trade not accepted"  |
-|B | The buyer sends the correct payment. | Rejected as expected: "Successful"  |
+|B | The buyer sends the correct payment. | "Successful"  |
 |C | Only the meter can confirm the delivery. | Rejected as expected: "Only meter can confirm"  |
 |D/E | The delivery cannot be confirmed twice. | First Successful, second rejected: Already confirmed  |
 |F | The buyer cannot settle before the delivey is confirmed. | Rejected as expected: "Delivery not confirmed"  |
