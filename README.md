@@ -60,6 +60,8 @@ I added some checks using require to make sure that only the correct accounts ca
 - Only the meter can confirm the energy delivery.
 - Only the seller or buyer can call settle.
 - The contract checks that the payment is exactly the agreed price.
+- The settled variable is changed to true before sending the money, to prevent the same payment from happening twice.
+
 ## Deployment on Sepolia
 The contract was deployed on the Sepolia test network using MetaMask and Alchemy (BaaS).
 
